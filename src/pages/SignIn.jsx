@@ -1,8 +1,3 @@
-// import * as React from "react";
-
-// export default function SignIn() {
-//   return <h1>Sign In</h1>;
-// }
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
