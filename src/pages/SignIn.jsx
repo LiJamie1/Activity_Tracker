@@ -57,6 +57,8 @@ export default function SignIn() {
     });
   };
 
+  const isValid = user.email === "" || user.password === "";
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -113,6 +115,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSubmit}
+              disabled={isValid}
             >
               Sign In
             </Button>
