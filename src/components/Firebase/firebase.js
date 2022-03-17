@@ -1,6 +1,6 @@
-import app from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/database";
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_APIKEY,
@@ -14,8 +14,8 @@ const firebaseConfig = {
 
 class Firebase {
   constructor() {
-    app.initializeApp(firebaseConfig);
-    this.auth = app.auth();
+    firebase.initializeApp(firebaseConfig);
+    this.auth = firebase.auth();
   }
   // Authentication
   doCreateUser = (email, password) => {
