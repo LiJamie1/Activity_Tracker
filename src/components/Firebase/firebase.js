@@ -3,7 +3,7 @@ import "firebase/compat/auth";
 import "firebase/compat/database";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_APIKEY,
+  apiKey: "AIzaSyDk1SNBFeom7Dgfxe119OmEjoRsfObOIsw",
   authDomain: "workout-tracker-4ab41.firebaseapp.com",
   projectId: "workout-tracker-4ab41",
   storageBucket: "workout-tracker-4ab41.appspot.com",
