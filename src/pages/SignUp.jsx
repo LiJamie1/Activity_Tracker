@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withFirebase } from "../components/Firebase";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -33,28 +34,33 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const [user, setUser] = useState({
+export default function SignUp(props) {
+  const initialUser = {
     id: null,
     email: "",
     password: "",
     error: null,
     auth: null,
-  });
+  };
+
+  const [user, setUser] = useState(initialUser);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const handleSubmit = (e) => {
+    props.firebase.auth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      // Later add user also to database
+      .then((authUser) => {
+        setUser(e.user);
+        props.history.push("/dashboard");
+      })
+      .catch((error) => {
+        setUser({ ...user, error: error.message });
+      });
   };
 
   const isValid = user.email === "" || user.password === "";
@@ -75,7 +81,7 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
           </Typography>
           <Box
             component="form"
@@ -126,8 +132,8 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/" variant="body2">
+                  Have an account? Sign In
                 </Link>
               </Grid>
             </Grid>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Link, withRouter } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -35,13 +34,15 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const [user, setUser] = useState({
+  const initialUser = {
     id: null,
     email: "",
     password: "",
     error: null,
     auth: null,
-  });
+  };
+
+  const [user, setUser] = useState(initialUser);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -127,8 +128,8 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/sign-up" variant="body2">
+                  Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>
