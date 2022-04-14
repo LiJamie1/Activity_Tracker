@@ -59,7 +59,7 @@ export default function SignIn() {
     });
   };
 
-  const isValid = user.email === "" || user.password === "";
+  const isValid = user.name === "" || user.email === "" || user.password === "";
 
   return (
     <ThemeProvider theme={theme}>

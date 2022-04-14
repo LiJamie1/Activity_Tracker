@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import { withFirebase } from "../components/Firebase";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -34,7 +35,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignUp(props) {
+function SignUp(props) {
   const initialUser = {
     id: null,
     email: "",
@@ -63,7 +64,7 @@ export default function SignUp(props) {
       });
   };
 
-  const isValid = user.email === "" || user.password === "";
+  const isValid = user.name === "" || user.email === "" || user.password === "";
 
   return (
     <ThemeProvider theme={theme}>
@@ -126,11 +127,6 @@ export default function SignUp(props) {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="/" variant="body2">
                   Have an account? Sign In
@@ -144,3 +140,5 @@ export default function SignUp(props) {
     </ThemeProvider>
   );
 }
+
+export default withRouter(withFirebase(SignUp));
